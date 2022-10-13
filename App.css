@@ -1,0 +1,164 @@
+.App {
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  padding: 90px 0 90px 0;
+  background-color: rgb(197, 193, 193);
+  
+
+}
+
+.sub-App {
+  display: flex;
+  justify-content: center;
+  height: 390px;
+  width: 450px;
+  box-shadow:0 5px 10px rgba(0,0,0,0.1);
+  padding-top: 20px;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+
+}
+.reset-App {
+  display: flex;
+  justify-content: center;
+  height: 450px;
+  width: 450px;
+  box-shadow:0 5px 10px rgba(0,0,0,0.1);
+  padding-bottom: 8px;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+
+
+}
+
+.imgs{
+  padding-top: 20px;
+  justify-content:center;
+  display: flex;
+}
+.container-image{
+  
+  align-items: center;
+  display: flex;
+  height: 115px;
+  width: 115px;
+}
+.lock{
+  height: 100px;
+  width: 90px;
+  padding-left:14px;
+  
+  bottom: 5px;
+}
+.unlock{
+  height: 114px;
+  width: 90px;
+  padding-top: 30px;
+
+
+}
+
+.mail{
+  height: 20px;
+  width: 20px;
+  position: relative;
+  top: 5px;
+  left: 40px;
+  
+  
+}
+.inputstyle{
+  width: 350px;
+  height: 50px;
+  border-radius: 60px;
+  box-shadow: inset 0px 0px 25px 0px #888;
+  border: none;
+  outline: none;
+  background-color: #ffffff;
+  
+
+  
+}
+
+.info{
+  padding-bottom: 5px;
+  color:rebeccapurple;
+  font-size: 15px;
+  
+}
+.link{
+  font-size: 25px;
+  font-weight: 400px;
+}
+
+.otp{
+  padding-left: 13px;
+  font-size: 17px;
+
+}
+.new-password{
+  padding-left: 30px;
+  font-size: 18px;
+
+}
+
+.confirm-password{
+  padding-left: 30px;
+  font-size: 18px;
+}
+.btn-primary{
+  width: 150px;
+  
+
+}
+.mail-id{
+  padding-left: 13px;
+  font-size: 18px;
+  width: 300px;
+}
+.text-otp{
+  font-size: 19px;
+  padding:0px;
+  color:rebeccapurple;
+}
+.text-newpass{
+  font-size: 19px;
+  color: rebeccapurple;
+}
+.text-confirmpass{
+  font-size: 19px;
+  color: rebeccapurple;
+}
+.resetpass{
+  font-size: 35px;
+  padding-bottom: 0px;
+  
+}
+.text-forgotpass{
+  font-size: 30px;
+  padding-bottom: 0px;
+
+}
+.email-success{
+  font-size: 20px;
+  color: rebeccapurple;
+}
+
+.validation{
+
+  margin-top:10px;
+
+  font-size:10px;
+
+  color:#333;
+
+}
+
+.offscreen{
+
+  position:absolute;
+
+  left:-9999px;
+
+}
