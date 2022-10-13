@@ -1,0 +1,31 @@
+.orange
+{
+    color: orangered;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.btn-success:hover{
+background-color: rgb(14,169,94);
+}
+
+.btn-success:active{
+    transform: translateY(7px);
+    transform: translateX(7px);
+    transform: translateZ(7px);
+    transform: translate3d(7px);
+    box-shadow: 0px 6px 0px 0px rgb(57, 138, 97);
+}
+
+.search-container {
+    margin : 10 rem 0;
+    width : 25%;
+}
+
+.search-container input {
+    width : 100%;
+    padding : 10px;
+    font-size: 2 rem;
+    outline: none;
+    border: 2px solid #ccc;
+}
