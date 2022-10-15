@@ -1,13 +1,15 @@
 import { BrowserRouter as Router, Navigate, Route } from 'react-router-dom';
-import {Routes} from 'react-router-dom';
+import {Routes, Link} from 'react-router-dom';
 import React from 'react';
 import { useState } from 'react';
 import AdminDashboard from './pages/AdminDashboard';
 import DeveloperDashboard from './pages/DeveloperDashboard';
 import EmployeeDashboard from './pages/EmployeeDashboard';
 import AllowanceDashboard from './pages/AllowanceDashboard';
+import SuperUserDashboard from './pages/SuperUserDashboard';
 import Homepage from './pages/Homepage';
 import Login from './pages/Login';
+//import Unauthorized from './pages/Unauthorized';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import Profile from './pages/Profile';
@@ -15,6 +17,7 @@ import RequestAccess from './pages/RequestAccess';
 import { Outlet } from 'react-router-dom';
 import AuthComp from './pages/Authcomp';
 import ProfileEdit from './pages/ProfileEdit';
+import './pages/Unauthorized.scss';
 
 function App () {
 
@@ -53,6 +56,10 @@ function App () {
         <Route path='/employee' element = {<EmployeeDashboard/>} />
         </Route>
 
+        <Route path='/superuser' element = {<SuperUserDashboard/>} />
+
+        <Route path='/unauthorized' element = {<Unauthorized/>} />
+
         </Routes>
         </Router>
         </AuthComp.Provider>
@@ -72,7 +79,7 @@ const PrivateRoutes1 = () => {
   console.log("admin " + temp.isAdmin);
 
   return(
-    isAdmin ? <Outlet/> : <Navigate to={`/profile/${pmn}`}/>
+    isAdmin ? <Outlet/> : <Navigate to='/unauthorized'/>
    )
  
 }
@@ -88,7 +95,7 @@ const PrivateRoutes2 = () => {
   console.log("lead " + temp.isLead);
 
   return(
-    isLead ? <Outlet/> : <Navigate to={`/profile/${pmn}`}/>
+    isLead ? <Outlet/> : <Navigate to='/unauthorized'/>
    )
 
 }
@@ -104,7 +111,7 @@ const PrivateRoutes3 = () => {
   console.log("developer " + temp.isDeveloper);
 
   return(
-    isDeveloper ? <Outlet/> : <Navigate to={`/profile/${pmn}`}/>
+    isDeveloper ? <Outlet/> : <Navigate to='/unauthorized' />
    )
 
 }
@@ -120,9 +127,35 @@ const PrivateRoutes4 = () => {
   console.log("employee " + temp.isEmployee);
 
   return(
-    isEmployee ? <Outlet/> : <Navigate to={`/profile/${pmn}`}/>
+    isEmployee ? <Outlet/> : <Navigate to='/unauthorized'/>
    )
 
+}
+
+const Unauthorized = () => {
+  var pmn = JSON.parse(localStorage.getItem("userpojo"));
+  var role = JSON.parse(localStorage.getItem("userpojorole"));
+  return (
+    <div className='container5'>
+      <div class="gandalf">
+        <div class="fireball"></div>
+        <div class="skirt"></div>
+        <div class="sleeves"></div>
+        <div class="shoulders">
+          <div class="hand left"></div>
+          <div class="hand right"></div>
+        </div>
+        <div class="head">
+          <div class="hair"></div>
+          <div class="beard"></div>
+        </div>
+      </div>
+      <div class="message5">
+        <h1>403 - You Shall Not Pass</h1>
+        <p>Uh oh, looks like you are unauthorized to view this page! <Link to={`/profile/${pmn}`}>Back to Profile</Link> </p>
+      </div>
+    </div>
+  )
 }
    
     

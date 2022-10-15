@@ -13,6 +13,7 @@ import * as AiIcons from "react-icons/ai";
 import * as BiIcons from "react-icons/bi";
 import * as ImIcons from "react-icons/im";
 import * as MdIcons from "react-icons/md";
+import * as RiIcons from "react-icons/ri";
 import AdminDashboard from "../../pages/AdminDashboard";
 
 const Main = () => {
@@ -60,13 +61,13 @@ const Main = () => {
                             <div class="offcanvas-body">
                                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                                     <li class="nav-item">
-                                        <LinkContainer to="/profile">
+                                    <LinkContainer to={`/profile/${pmn}`}>
                                             <Nav.Link><MdIcons.MdSpaceDashboard />&ensp;Profile</Nav.Link>
                                         </LinkContainer>
                                     </li>
                                     <li class="nav-item">
                                         <LinkContainer to="/admin">
-                                            <Nav.Link><ImIcons.ImUserTie />&ensp;Admin Dashboard</Nav.Link>
+                                            <Nav.Link><RiIcons.RiAdminFill />&ensp;Admin Dashboard</Nav.Link>
                                         </LinkContainer>
                                     </li>
                                     <li class="nav-item">
@@ -85,10 +86,16 @@ const Main = () => {
                                         </LinkContainer>
                                     </li>
                                     <li class="nav-item">
+                                        <LinkContainer to="/superuser">
+                                            <Nav.Link><ImIcons.ImUserTie />&ensp;Super User Dashboard</Nav.Link>
+                                        </LinkContainer>
+                                    </li>
+                                    <li class="nav-item">
                                         <LinkContainer to="/logout">
                                             <Nav.Link><BiIcons.BiLogOutCircle />&ensp;Logout</Nav.Link>
                                         </LinkContainer>
                                     </li>
+                                    
                                 </ul>
 
                             </div>
