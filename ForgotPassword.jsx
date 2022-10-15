@@ -39,18 +39,19 @@ export default function ForgotPassword() {
     if (res1.data == true) {
 
       let otp = generateOtp();
-      var formBodyData = new FormData();
-      formBodyData.append('msgBody', "Hi,\n\nThe OTP to reset your password is : " + otp + "\n\nPlease enter this OTP in the reset password page to change your password. \n\n If you are facing any issues with the page, then click on the below link to change your password. \n http://localhost:3000/resetpassword" + "\n\n\nThanks&Regards, \n Admin");
-      formBodyData.append('subject', "OTP to reset your password");
-      formBodyData.append('recipient', userRecipient)
 
+      var formBodyData=new FormData();
+          formBodyData.append('msgBody', "Dear Incedoer,\n\nThe OTP to reset your password is : " + otp + "\n\nPlease enter this OTP in the reset password page to change your password. \n\n If you are facing any issues accessing the reset password page, then click on the below link to change your password. \n http://localhost:3000/resetpassword" + "\n\n\nRegards,\nTeam Admin\nShift-Allowance App | http://localhost:3000");
+          formBodyData.append('subject', "OTP to reset your password");
+          formBodyData.append('recipient', userRecipient)
 
-      const res2 = await axios({
-        method: "POST",
-        url: "http://localhost:8080/mailWithOtp",
-        data: formBodyData,
-        headers: { "Content-Type": "multipart/form-data" }
-      })
+        const res2=await axios({
+            method:"POST",
+            url:"http://localhost:8080/mailWithOtp",
+            data:formBodyData,
+            headers:{"Content-Type":"multipart/form-data"}
+        })
+
       if (res2.data == "Mail sent Successfully") {
         setmailSuccess(true);
         console.log('hi');
@@ -63,7 +64,6 @@ export default function ForgotPassword() {
     else {
       setmailexist(false);
     }
-
   }
 
   const generateOtp = () => {

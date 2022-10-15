@@ -8,6 +8,7 @@ import { FaArrowUp, FaArrowDown} from "react-icons/fa";
 import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav } from 'react-bootstrap'
 //import './All.css'
+import incedo from "../assests/incedo.jpg";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import * as BiIcons from "react-icons/bi";
@@ -34,13 +35,14 @@ async function updaterequested(itemusername,itemrole,itemstatus)
       headers:{'Content-Type':'Application/json'}
         })
       alert('Changes have been made Successfully!');
+
       //send mail
       var formBodyData=new FormData();
-          formBodyData.append('msgBody', "Hi,\n\nYour status has been updated to : " + estatus + "\n"+"\n Login to view your profile page. \n http://localhost:3000/login" +  "\n\n\nThanks&Regards, \n Admin");
-          formBodyData.append('subject', "Regarding request-access status");
-          formBodyData.append('recipient', itemusername)
+          formBodyData.append('msgBody', + "Dear Incedoer,\n\nYour request to enroll as a new user of our shift allowance app has been updated to : " + estatus + "\n\nKindly login to view your profile page.\nhttp://localhost:3000/login \n \nRegards,\nTeam Admin\nShift-Allowance App | http://localhost:3000");
+          formBodyData.append('subject', "Shift Allowance app - Request Updated");
+          formBodyData.append('recipient', itemusername);
 
-        const res2= await axios({
+       const res2= await axios({
             method:"POST",
             url:"http://localhost:8080/mailWithOtp",
             data:formBodyData,
@@ -235,7 +237,7 @@ const sortByStatus = () => {
                     </LinkContainer>
                   </li>
                   <li class="nav-item">
-                    <LinkContainer to="/user">
+                    <LinkContainer to="/lead">
                       <Nav.Link><BiIcons.BiSpreadsheet />&ensp;Allowance Dashboard</Nav.Link>
                     </LinkContainer>
                   </li>
@@ -272,9 +274,7 @@ const sortByStatus = () => {
           <Card className="mt-2">
           <Card.Body>
           <div className="search-container">
-          <input type = "text" 
-          placeholder="Search by Name" 
-          value={filterVal} onInput={(e) => handleFilter(e)}/>
+          <input type = "text" placeholder="Search by Name" value={filterVal} onInput={(e) => handleFilter(e)}/>
           </div>
           <br/>
           {fruitMessage && <Alert variant="success">{fruitMessage}</Alert>}
