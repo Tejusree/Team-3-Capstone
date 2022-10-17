@@ -151,6 +151,13 @@ const Main = () => {
                     </div>
                 </section>
             </main>
+              {/* <!----- Footer start -----> */}
+      <footer class="text-center text-lg-start bg-dark text-white fixed-bottom">
+        <div class="text-center p-2">
+          &copy; Copyright 2022 Incedo Inc.
+        </div>
+      </footer>
+            {/* <!----- Footer end -----> */}
         </div>
     );
 };
