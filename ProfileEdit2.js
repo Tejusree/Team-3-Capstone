@@ -52,7 +52,7 @@ const Profileedit = (props) => {
             headers: { 'Content-Type': 'Application/json' }
         }).then(data => {
                 console.log(data)
-                setMsg("Updated the User in Allowance DashBoard")
+                setMsg("Updated the User in Allowance DashBoard");
                 setmsgColor(true);
             });
     }
@@ -141,7 +141,7 @@ const Profileedit = (props) => {
                     APPROVAL STATUS:
                 </label>
                 {/* <input type="text" defaultValue={newuserdata.status}></input> */}
-                <select id="status" name="new_user_status" onChange={(e)=>setUpdatedstatus(e.target.value)} style={{"height":"45px"}}>
+                <select id="status" name="new_user_status" onChange={(e)=>setUpdatedstatus(e.target.value)} style={{"height":"50px"}}>
                     <option defaultValue={newuserdata.status}>{newuserdata.status}</option>
                     <option value="Approved">Approved</option>
                 </select>
@@ -151,23 +151,12 @@ const Profileedit = (props) => {
                 </label>
                 <input type="text" defaultValue={newuserdata.totalallowance}></input> */}
                 <button className="btn btn-success" type="submit" onClick={(e) => handlesubmit(e)}>Submit</button><br />
-                <a href="/lead">Back to Allowance DashBoard</a><br/>
-                 {msgColor ?  <div className="msgdisplayg">
+                <a href="/superuser">Back to Super Allowance DashBoard</a><br/>
+                {msgColor ?  <div className="msgdisplayg">
                     {msg}
                     </div> : ' '
 }
-                
             </form>
-            <br />
-            <br />
-            <br />
-            {/* <!----- Footer start -----> */}
-      <footer class="text-center text-lg-start bg-dark text-white fixed-bottom">
-        <div class="text-center p-2">
-          &copy; Copyright 2022 Incedo Inc.
-        </div>
-      </footer>
-            {/* <!----- Footer end -----> */}
         </div>
     )
 };

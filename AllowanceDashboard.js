@@ -3,14 +3,16 @@ import { useEffect } from "react";
 import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav, Row, Card } from 'react-bootstrap';
 import { CSVLink } from 'react-csv';
-//import '../All.css'
+import './All.css'
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import * as BiIcons from "react-icons/bi";
 import * as ImIcons from "react-icons/im";
 import * as MdIcons from "react-icons/md";
+import * as RiIcons from "react-icons/ri";
 import Pagination from "./Pagination";
 import { FaArrowUp, FaArrowDown} from "react-icons/fa";
+import './dashboard.css';
 
 const AllowanceDashboard = () => {
 
@@ -198,10 +200,10 @@ const AllowanceDashboard = () => {
                                     </LinkContainer>
                                 </li>
                                 <li class="nav-item">
-                                    <LinkContainer to="/admin">
-                                        <Nav.Link><ImIcons.ImUserTie />&ensp;Admin Dashboard</Nav.Link>
-                                    </LinkContainer>
-                                </li>
+                                        <LinkContainer to="/admin">
+                                            <Nav.Link><RiIcons.RiAdminFill />&ensp;Admin Dashboard</Nav.Link>
+                                        </LinkContainer>
+                                    </li>
                                 <li class="nav-item">
                                     <LinkContainer to="/lead">
                                         <Nav.Link><BiIcons.BiSpreadsheet />&ensp;Allowance Dashboard</Nav.Link>
@@ -218,10 +220,15 @@ const AllowanceDashboard = () => {
                                     </LinkContainer>
                                 </li>
                                 <li class="nav-item">
-                                    <LinkContainer to="/login">
-                                        <Nav.Link><ImIcons.ImUserTie />&ensp;Logout</Nav.Link>
-                                    </LinkContainer>
-                                </li>
+                                        <LinkContainer to="/superuser">
+                                            <Nav.Link><ImIcons.ImUserTie />&ensp;Super User Dashboard</Nav.Link>
+                                        </LinkContainer>
+                                    </li>
+                                    <li class="nav-item">
+                                        <LinkContainer to="/logout">
+                                            <Nav.Link><BiIcons.BiLogOutCircle />&ensp;Logout</Nav.Link>
+                                        </LinkContainer>
+                                    </li>
                             </ul>
 
                         </div>
@@ -241,9 +248,9 @@ const AllowanceDashboard = () => {
         <br />
 
 
-        <div class="d-flex justify-content-evenly">
-            <div class="col" style={{ "padding-left": "70px" }}>
-                <select class="form-select" aria-label="Default select example" style={{ "width": "240px" }} onChange={(e) => { setProjectName(e.target.value) }}>
+        <div id="main" class="d-flex justify-content-evenly">
+            <div class="col project">
+                <select aria-label="Default select example" style={{ "height":"36px" }} onChange={(e) => { setProjectName(e.target.value) }}>
                     <option selected>Project</option>
                     <option value="Digital">Digital</option>
                     <option value="Enterprise Platforms">Enterprise Platforms</option>
@@ -252,15 +259,15 @@ const AllowanceDashboard = () => {
                 </select>
             </div>
             <div class="col">
-                <label>From</label>&emsp;
+                <label>From</label>&ensp;
                 <input type="date" style={{ "height": "36px" }} onChange={(e) => { setStartdata(e.target.value) }} />
             </div>
             <div class="col">
-                <label>To</label>&emsp;
+                <label>To</label>&ensp;
                 <input type="date" style={{ "height": "36px" }} onChange={(e) => { setEnddate(e.target.value) }} />
             </div>
             <div class="col">
-                <label>Data</label>&emsp;
+                <label>Data</label>&ensp;
                 <select style={{ "height": "36px" }} defaultValue={"All"} onChange={(e) => { setApprovalstatus(e.target.value) }}>
                     <option value="All">All</option>
                     <option value="Approved">Approved</option>
@@ -270,206 +277,76 @@ const AllowanceDashboard = () => {
         </div>
         <br />
         <div class="container-fluid">
-            <div className="search-container" style={{ "padding-left": "70px" }}>
+            <div className="search-container searchstyle">
                 <input type="text" placeholder="Search by Name" value={filterVal} onInput={(e) => handleFilter(e)} style={{ "width": "150px" }} />
             </div>
 
         </div>
+        <br/>
         <div className="container">
 
-            <Row>
-                <Card className="mt-2">
-                    <Card.Body>
-                        <table class="table .table-striped">
+           
+                        <table class="table table-striped table-responsive">
                             <thead className="table-info">
                                 <tr>
-                                    <th>ID</th>
-                                    <th onClick={sortByName}>Name {sorted.sorted === "name" ? renderArrow() : null}</th>
-                                    <th onClick={sortBySAPID}>SAP ID {sorted.sorted === "sapid" ? renderArrow() : null}</th>
-                                    <th>Project hours</th>
-                                    <th>ProjectManagerName</th>
-                                    <th>Holiday / leaves hours</th>
-                                    <th>Afternoon Shift Days</th>
-                                    <th>Night Shift Days</th>
-                                    <th>Days eligible for TA</th>
-                                    <th>Transport Allowance</th>
-                                    <th>Approval Status</th>
-                                    <th>Total Allowance</th>
-                                    <th>Action</th>
+                                    <th className="text-center">ID</th>
+                                    <th className="text-center" onClick={sortByName}>Name {sorted.sorted === "name" ? renderArrow() : null}</th>
+                                    <th className="text-center" onClick={sortBySAPID}>SAP ID {sorted.sorted === "sapid" ? renderArrow() : null}</th>
+                                    <th className="text-center">Project hours</th>
+                                    <th className="text-center">Project Manager Name</th>
+                                    <th className="text-center">Holiday / leaves hours</th>
+                                    <th className="text-center">Afternoon Shift Days</th>
+                                    <th className="text-center">Night Shift Days</th>
+                                    <th className="text-center">Days eligible for TA</th>
+                                    <th className="text-center">Transport Allowance</th>
+                                    <th className="text-center">Approval Status</th>
+                                    <th className="text-center">Total Allowance</th>
+                                    <th className="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {currentItems.map(c => <tr>
                                     {/* <td><input type="checkbox" /></td> */}
                                     <React.Fragment key={c.id}>
-                                        <td>{c.id}</td>
-                                        <td>{c.name}</td>
-                                        <td>{c.sapid}</td>
-                                        <td>{c.projecthours}</td>
-                                        <td>{c.projectmanagername}</td>
-                                        <td>{c.holidayleavehours}</td>
-                                        <td>{c.afternoonshiftdays}</td>
-                                        <td>{c.nightshiftdays}</td>
-                                        <td>{c.dayseligibleforta}</td>
-                                        <td>{c.transportallowance}</td>
-                                        <td>{c.status}</td>
-                                        <td>{c.totalallowance}</td>
-                                        <td><button style={{ backgroundColor: "yellow" }}><a href={`/ProfileEdit/${c.id}`} style={{ color: "black" }}>Edit</a></button></td>
+                                        <td className="text-center">{c.id}</td>
+                                        <td className="text-center">{c.name}</td>
+                                        <td className="text-center">{c.sapid}</td>
+                                        <td className="text-center">{c.projecthours}</td>
+                                        <td className="text-center">{c.projectmanagername}</td>
+                                        <td className="text-center">{c.holidayleavehours}</td>
+                                        <td className="text-center">{c.afternoonshiftdays}</td>
+                                        <td className="text-center">{c.nightshiftdays}</td>
+                                        <td className="text-center">{c.dayseligibleforta}</td>
+                                        <td className="text-center">{c.transportallowance}</td>
+                                        <td className="text-center">{c.status}</td>
+                                        <td className="text-center">{c.totalallowance}</td>
+                                        <td className="text-center"><button style={{ backgroundColor: "yellow" }}><a href={`/ProfileEdit/${c.id}`} style={{ color: "black" }}><RiIcons.RiEdit2Fill/></a></button></td>
                                     </React.Fragment>
                                 </tr>)}
                                 <tr>
-                                    <td colspan="12">
-                                        <Pagination itemsPerPage={itemsPerPage} totalItems={Udata.length} paginate={paginate} />
-                                    </td>
                                 </tr>
                             </tbody>
                         </table>
-
-                    </Card.Body>
-                </Card></Row>
-            <div class="d-flex justify-content-between" style={{ "padding-left": "10px" }}>
-                <div style={{ "padding-left": "950px" }}>
+                        <Pagination itemsPerPage={itemsPerPage} totalItems={Udata.length} paginate={paginate} />
+                    
+            <div class="d-flex justify-content-between" style={{ "padding-left": "1.5cm", "font-weight": "bold" }}>
+                <br />
                     {/* <button type="button" class="btn btn-success">Approve</button>&ensp;
                         <button type="button" class="btn btn-info"><i class="fa fa-download" aria-hidden="true"></i></button><br/>*/}<br />
                     <button class="btn btn-success" style={{ "width": "140px" }}><CSVLink {...csvreport} style={{ "text-decoration": "none", "color": "white" }}>Export to csv <i class="fa fa-download" aria-hidden="true"></i></CSVLink></button>
-                </div>
+                
                 <br />
             </div>
-        </div>
-        <br />
-
+        </div><br/>
+      <br/>
+      <br/>
         {/* <!----- Footer start -----> */}
-        <footer class="text-center text-lg-start bg-dark text-white">
-            <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-                <div class="me-5 d-none d-lg-block">
-                    <h3>incedo</h3>
-                </div>
-                <div>
-
-                    <section class="mb-4">
-
-                        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        ><i class="fab fa-facebook-f"></i
-                        ></a>
-
-
-                        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        ><i class="fab fa-twitter"></i
-                        ></a>
-
-
-                        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        ><i class="fab fa-google"></i
-                        ></a>
-
-
-                        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        ><i class="fab fa-instagram"></i
-                        ></a>
-
-
-                        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        ><i class="fab fa-linkedin-in"></i
-                        ></a>
-
-
-                        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        ><i class="fab fa-github"></i
-                        ></a>
-                    </section>
-
-                </div>
-            </section>
-            <section class="">
-                <div class="container text-center text-md-start mt-5">
-                    <div class="row mt-3">
-                        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                            <h6 class="fw-bold mb-4">
-                                Company
-                            </h6>
-                            <p>
-                                <a href="#!" class="text-reset text-decoration-none">Company Overview</a>
-                            </p>
-                            <p>
-                                <a href="#!" class="text-reset text-decoration-none">Incedo Belief System</a>
-                            </p>
-                            <p>
-                                <a href="#!" class="text-reset text-decoration-none">Leadership</a>
-                            </p>
-                            <p>
-                                <a href="#!" class="text-reset text-decoration-none">Winning In The Digital Age</a>
-                            </p>
-                        </div>
-                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                            <h6 class="fw-bold mb-4">
-                                Services
-                            </h6>
-                            <p>
-                                <a href="#!" class="text-reset text-decoration-none">AI and Data</a>
-                            </p>
-                            <p>
-                                <a href="#!" class="text-reset text-decoration-none">Cloud Transformation</a>
-                            </p>
-                            <p>
-                                <a href="#!" class="text-reset text-decoration-none">Digital Engineering</a>
-                            </p>
-                            <p>
-                                <a href="#!" class="text-reset text-decoration-none">Experience Design</a>
-                            </p>
-                        </div>
-                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                            <h6 class="fw-bold mb-4">
-                                Industries
-                            </h6>
-                            <p>
-                                <a href="#!" class="text-reset text-decoration-none">Financial Services</a>
-                            </p>
-                            <p>
-                                <a href="#!" class="text-reset text-decoration-none">Life Sciences</a>
-                            </p>
-                            <p>
-                                <a href="#!" class="text-reset text-decoration-none">Product Engineering</a>
-                            </p>
-                            <p>
-                                <a href="#!" class="text-reset text-decoration-none">Telecom</a>
-                            </p>
-                        </div>
-                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                            <h6 class="fw-bold mb-4">
-                                Platforms
-                            </h6>
-                            <p>
-                                <a href="#!" class="text-reset text-decoration-none">Incedo Lighthouse<sup>TM</sup></a>
-                            </p>
-                            <p>
-                                <a href="#!" class="text-reset text-decoration-none">IncedoPay</a>
-                            </p>
-                        </div>
-                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                            <h6 class="fw-bold mb-4">
-                                Insights
-                            </h6>
-                            <p>
-                                <a href="#!" class="text-reset text-decoration-none">Case Studies</a>
-                            </p>
-                            <p>
-                                <a href="#!" class="text-reset text-decoration-none">White Papers</a>
-                            </p>
-                            <p>
-                                <a href="#!" class="text-reset text-decoration-none">Blogs</a>
-                            </p>
-                            <p>
-                                <a href="#!" class="text-reset text-decoration-none">Videos</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <div class="text-center p-4">
-                &copy; Copyright 2022 Incedo Inc.
-            </div>
-        </footer>
-        {/* <!----- Footer end -----> */}
+      <footer class="text-center text-lg-start bg-dark text-white fixed-bottom">
+        <div class="text-center p-2">
+          &copy; Copyright 2022 Incedo Inc.
+        </div>
+      </footer>
+            {/* <!----- Footer end -----> */}
     </div>
 
     )

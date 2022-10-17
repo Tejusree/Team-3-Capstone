@@ -7,6 +7,7 @@ import * as AiIcons from "react-icons/ai";
 import * as BiIcons from "react-icons/bi";
 import * as ImIcons from "react-icons/im";
 import * as MdIcons from "react-icons/md";
+import * as RiIcons from "react-icons/ri";
 //import './DeveloperDashboard.css'
 
 const DeveloperDashboard = () => {
@@ -42,10 +43,10 @@ const DeveloperDashboard = () => {
                                     </LinkContainer>
                                 </li>
                                 <li class="nav-item">
-                                    <LinkContainer to="/admin">
-                                        <Nav.Link><ImIcons.ImUserTie />&ensp;Admin Dashboard</Nav.Link>
-                                    </LinkContainer>
-                                </li>
+                                        <LinkContainer to="/admin">
+                                            <Nav.Link><RiIcons.RiAdminFill />&ensp;Admin Dashboard</Nav.Link>
+                                        </LinkContainer>
+                                    </li>
                                 <li class="nav-item">
                                     <LinkContainer to="/lead">
                                         <Nav.Link><BiIcons.BiSpreadsheet />&ensp;Allowance Dashboard</Nav.Link>
@@ -62,10 +63,15 @@ const DeveloperDashboard = () => {
                                     </LinkContainer>
                                 </li> 
                                 <li class="nav-item">
-                                    <LinkContainer to="/login">
-                                        <Nav.Link><ImIcons.ImUserTie />&ensp;Logout</Nav.Link>
-                                    </LinkContainer>
-                                </li>
+                                        <LinkContainer to="/superuser">
+                                            <Nav.Link><ImIcons.ImUserTie />&ensp;Super User Dashboard</Nav.Link>
+                                        </LinkContainer>
+                                    </li>
+                                    <li class="nav-item">
+                                        <LinkContainer to="/logout">
+                                            <Nav.Link><BiIcons.BiLogOutCircle />&ensp;Logout</Nav.Link>
+                                        </LinkContainer>
+                                    </li>
                                         
                                 </ul>
                             </div>
@@ -82,41 +88,37 @@ const DeveloperDashboard = () => {
             </div>
             <br />
                 <div class="container">
-                <Row>
-                 <Card className="mt-2">
-                   <Card.Body>
+               
                     <table class="table text-center table-striped" >
                         <thead className="bg-info">
                             <tr>
-                                <th scope='col'>User ID</th>
-                                <th scope='col'>Name</th>
-                                <th scope='col'>Active From</th>
-                                <th scope='col'>Role</th>
-                                <th scope='col'>Status</th>
-                                <th scope='col'>User Name</th>
+                                <th scope='col' className="text-center">User ID</th>
+                                <th scope='col' className="text-center">Name</th>
+                                <th scope='col'className="text-center">Active From</th>
+                                <th scope='col'className="text-center">Role</th>
+                                <th scope='col' className="text-center">Status</th>
+                                <th scope='col' className="text-center">User Name</th>
                                
                             </tr>
                         </thead>
                         <tbody className="tbody-light">
                         {data && (data.map(item =>
                             <tr>
-                                <td>{item.id}</td>
-                                <td>{item.name}</td>
-                                <td>{item.activefrom}</td>
-                                <td>{item.role}</td>
-                                <td>{item.status}</td>
-                                <td>{item.username}</td>
+                                <td className="text-center">{item.id}</td>
+                                <td className="text-center">{item.name}</td>
+                                <td className="text-center">{item.activefrom}</td>
+                                <td className="text-center">{item.role}</td>
+                                <td className="text-center">{item.status}</td>
+                                <td className="text-center">{item.username}</td>
                                
                             </tr>
                              ))}
                         </tbody>
 
                     </table>
-                    </Card.Body>
-          </Card>
-          </Row>
-                    <div className="card text-center">
-          <div className="card-body">
+                    <br/>
+                    <div className="text-center">
+          <div>
             <a href="/requestaccess" className="btn btn-primary">Add</a>
           </div>
         </div>
@@ -124,137 +126,16 @@ const DeveloperDashboard = () => {
 
 
             </div>
-
-            <footer class="text-center text-lg-start bg-dark text-white">
-                <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-                    <div class="me-5 d-none d-lg-block">
-                        <h3>incedo</h3>
-                    </div>
-                    <div>
-
-                        <section class="mb-4">
-
-                            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                            ><i class="fab fa-facebook-f"></i
-                            ></a>
-
-
-                            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                            ><i class="fab fa-twitter"></i
-                            ></a>
-
-
-                            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                            ><i class="fab fa-google"></i
-                            ></a>
-
-
-                            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                            ><i class="fab fa-instagram"></i
-                            ></a>
-
-
-                            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                            ><i class="fab fa-linkedin-in"></i
-                            ></a>
-
-
-                            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                            ><i class="fab fa-github"></i
-                            ></a>
-                        </section>
-
-                    </div>
-                </section>
-                <section class="">
-                    <div class="container text-center text-md-start mt-5">
-                        <div class="row mt-3">
-                            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                                <h6 class="fw-bold mb-4">
-                                    Company
-                                </h6>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Company Overview</a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Incedo Belief System</a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Leadership</a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Winning In The Digital Age</a>
-                                </p>
-                            </div>
-                            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                                <h6 class="fw-bold mb-4">
-                                    Services
-                                </h6>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">AI and Data</a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Cloud Transformation</a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Digital Engineering</a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Experience Design</a>
-                                </p>
-                            </div>
-                            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                                <h6 class="fw-bold mb-4">
-                                    Industries
-                                </h6>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Financial Services</a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Life Sciences</a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Product Engineering</a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Telecom</a>
-                                </p>
-                            </div>
-                            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                                <h6 class="fw-bold mb-4">
-                                    Platforms
-                                </h6>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Incedo Lighthouse<sup>TM</sup></a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">IncedoPay</a>
-                                </p>
-                            </div>
-                            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                                <h6 class="fw-bold mb-4">
-                                    Insights
-                                </h6>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Case Studies</a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">White Papers</a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Blogs</a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Videos</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <div class="text-center p-4">
-                    &copy; Copyright 2022 Incedo Inc.
-                </div>
-            </footer>
+            <br/>
+      <br/>
+      <br/>
+            {/* <!----- Footer start -----> */}
+      <footer class="text-center text-lg-start bg-dark text-white fixed-bottom">
+        <div class="text-center p-2">
+          &copy; Copyright 2022 Incedo Inc.
+        </div>
+      </footer>
+            {/* <!----- Footer end -----> */}
         </div>
     
 };

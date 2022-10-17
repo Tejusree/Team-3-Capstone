@@ -3,6 +3,8 @@ import * as AiIcons from "react-icons/ai";
 import * as BiIcons from "react-icons/bi";
 import * as MdIcons from "react-icons/md";
 import * as FaIcons from "react-icons/fa";
+import * as RiIcons from "react-icons/ri";
+import * as SiIcons from "react-icons/si";
 import bgimage from '../assests/B.jpg';
 import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav } from 'react-bootstrap'
@@ -81,121 +83,38 @@ const Homepage = () => {
 
             <section className="mb-4">
 
-              <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              <a className="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/IncedoInc" target="_blank" role="button"
               ><i className="fab fa-facebook-f"></i
               ></a>
 
 
-              <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              <a className="btn btn-outline-light btn-floating m-1" href="https://twitter.com/IncedoInc" target="_blank" role="button"
               ><i className="fab fa-twitter"></i
               ></a>
 
 
-              <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-              ><i className="fab fa-google"></i
-              ></a>
-
-
-              <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-              ><i className="fab fa-instagram"></i
-              ></a>
-
-
-              <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              <a className="btn btn-outline-light btn-floating m-1" href="https://www.linkedin.com/company/incedo-inc/" target="_blank" role="button"
               ><i className="fab fa-linkedin-in"></i
               ></a>
 
-
-              <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-              ><i className="fab fa-github"></i
+              <a className="btn btn-outline-light btn-floating m-1" href="https://www.youtube.com/channel/UC6LjAUc6LyvLSwrEOMJaH_Q" target="_blank" role="button"
+              ><i className="fab fa-youtube"></i
               ></a>
+
+              <a className="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/incedoinc/" target="_blank" role="button"
+              ><i className="fab fa-instagram"></i
+              ></a>
+
+              <a className="btn btn-outline-light btn-floating m-1" href="https://incedoin-my.sharepoint.com/:p:/g/personal/mullapudi_sriganesh_incedoinc_com/Ecr5FxE1Uy1OqZaYogCyX9cB6t71DX0QnZaxu4M2HhkfFg?e=XqzbGl" target="_blank" role="button"
+              ><RiIcons.RiFilePpt2Fill/>
+              </a>
+
+              <a className="btn btn-outline-light btn-floating m-1" href="https://incedoin-my.sharepoint.com/:x:/g/personal/teja_mb_incedoinc_com/EV95FfEblQJIn3FD1iHJLr4BNtGA4ZTK2FqyhEWgjOmFPw?e=GqOlQx" target="_blank" role="button"
+              ><SiIcons.SiGooglesheets/>
+              </a>
+
             </section>
 
-          </div>
-        </section>
-        <section className="">
-          <div className="container text-center text-md-start mt-5">
-            <div className="row mt-3">
-              <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                <h6 className="fw-bold mb-4">
-                  Company
-                </h6>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Company Overview</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Incedo Belief System</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Leadership</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Winning In The Digital Age</a>
-                </p>
-              </div>
-              <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                <h6 className="fw-bold mb-4">
-                  Services
-                </h6>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">AI and Data</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Cloud Transformation</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Digital Engineering</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Experience Design</a>
-                </p>
-              </div>
-              <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                <h6 className="text-uppercase fw-bold mb-4">
-                  Industries
-                </h6>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Financial Services</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Life Sciences</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Product Engineering</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Telecom</a>
-                </p>
-              </div>
-              <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                <h6 className="text-uppercase fw-bold mb-4">
-                  Platforms
-                </h6>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Incedo Lighthouse<sup>TM</sup></a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">IncedoPay</a>
-                </p>
-              </div>
-              <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                <h6 className="text-uppercase fw-bold mb-4">
-                  Insights
-                </h6>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Case Studies</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">White Papers</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Blogs</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Videos</a>
-                </p>
-              </div>
-            </div>
           </div>
         </section>
         <div className="text-center p-4">
@@ -206,4 +125,4 @@ const Homepage = () => {
   )
 }
 
-export default Homepage
+export default Homepage;

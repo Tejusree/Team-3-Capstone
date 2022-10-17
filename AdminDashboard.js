@@ -8,12 +8,12 @@ import { FaArrowUp, FaArrowDown} from "react-icons/fa";
 import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav } from 'react-bootstrap'
 //import './All.css'
-import incedo from "../assests/incedo.jpg";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import * as BiIcons from "react-icons/bi";
 import * as ImIcons from "react-icons/im";
 import * as MdIcons from "react-icons/md";
+import * as RiIcons from "react-icons/ri";
 
 function deleterequested(username)
 {
@@ -38,7 +38,7 @@ async function updaterequested(itemusername,itemrole,itemstatus)
 
       //send mail
       var formBodyData=new FormData();
-          formBodyData.append('msgBody', + "Dear Incedoer,\n\nYour request to enroll as a new user of our shift allowance app has been updated to : " + estatus + "\n\nKindly login to view your profile page.\nhttp://localhost:3000/login \n \nRegards,\nTeam Admin\nShift-Allowance App | http://localhost:3000");
+          formBodyData.append('msgBody', "Dear Incedoer,\n\nYour request to enroll as a new user of our shift allowance app has been updated to : " + estatus + "\n\nKindly login to view your profile page.\nhttp://localhost:3000/login \n \nRegards,\nTeam Admin\nShift-Allowance App | http://localhost:3000");
           formBodyData.append('subject', "Shift Allowance app - Request Updated");
           formBodyData.append('recipient', itemusername);
 
@@ -232,9 +232,10 @@ const sortByStatus = () => {
                     </LinkContainer>
                   </li>
                   <li class="nav-item">
-                    <LinkContainer to="/admin">
-                      <Nav.Link><ImIcons.ImUserTie />&ensp;Admin Dashboard</Nav.Link>
-                    </LinkContainer>
+                                        <LinkContainer to="/admin">
+                                            <Nav.Link><RiIcons.RiAdminFill />&ensp;Admin Dashboard</Nav.Link>
+                                        </LinkContainer>
+                                    
                   </li>
                   <li class="nav-item">
                     <LinkContainer to="/lead">
@@ -252,10 +253,15 @@ const sortByStatus = () => {
                     </LinkContainer>
                   </li>
                   <li class="nav-item">
-                    <LinkContainer to="/login">
-                      <Nav.Link><ImIcons.ImUserTie />&ensp;Logout</Nav.Link>
-                    </LinkContainer>
-                  </li>
+                                        <LinkContainer to="/superuser">
+                                            <Nav.Link><ImIcons.ImUserTie />&ensp;Super User Dashboard</Nav.Link>
+                                        </LinkContainer>
+                                    </li>
+                                    <li class="nav-item">
+                                        <LinkContainer to="/logout">
+                                            <Nav.Link><BiIcons.BiLogOutCircle />&ensp;Logout</Nav.Link>
+                                        </LinkContainer>
+                                    </li>
                 </ul>
               </div>
             </div>
@@ -269,40 +275,40 @@ const sortByStatus = () => {
         <div class="container text-center border border-dark" style={{"background-color":"orange"}}>
           <h1>Admin DashBoard</h1>
         </div>
+        <br/>
         <div className="container">
-        <Row>
-          <Card className="mt-2">
-          <Card.Body>
+        
           <div className="search-container">
           <input type = "text" placeholder="Search by Name" value={filterVal} onInput={(e) => handleFilter(e)}/>
           </div>
           <br/>
           {fruitMessage && <Alert variant="success">{fruitMessage}</Alert>}
-          <table className="table text-center table-striped" >
+          <table className="table table-striped" >
             <thead className="table-warning">
               <tr>
-                <th onClick={sortById} scope='col'>User ID {sorted.sorted === "id" ? renderArrow() : null}</th>
-                <th onClick={sortByName} scope='col'>Name {sorted.sorted === "name" ? renderArrow() : null}</th>
-                <th scope='col'>Active From</th>
-                <th onClick={sortByRole} scope='col'>Role{sorted.sorted === "role" ? renderArrow() : null}</th>
-                <th onClick={sortByStatus} scope='col'>Status{sorted.sorted === "status" ? renderArrow() : null}</th>
-                <th scope='col' colSpan="2">Action</th>
+                <th className="text-center" onClick={sortById} scope='col'>User ID {sorted.sorted === "id" ? renderArrow() : null}</th>
+                <th className="text-center" onClick={sortByName} scope='col'>Name {sorted.sorted === "name" ? renderArrow() : null}</th>
+                <th className="text-center" scope='col'>Active From</th>
+                <th className="text-center" onClick={sortByRole} scope='col'>Role{sorted.sorted === "role" ? renderArrow() : null}</th>
+                <th className="text-center" onClick={sortByStatus} scope='col'>Status{sorted.sorted === "status" ? renderArrow() : null}</th>
+                <th className="text-center" scope='col' colSpan="2">Action</th>
               </tr>
             </thead>
             <tbody className="tbody-light">
               {data && (data.map(item =>
               <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.name}</td>
-                <td>{item.activefrom}</td>
-                <td><select onChange={(e)=>{item.role=e.target.value}}>
+                <td className="text-center">{item.id}</td>
+                <td className="text-center">{item.name}</td>
+                <td className="text-center">{item.activefrom}</td>
+                <td className="text-center"><select onChange={(e)=>{item.role=e.target.value}}>
                 <option value="default">{item.role}</option>
                 <option value="Admin" >Admin</option>
                 <option value="Lead">Lead</option>
                 <option value="Developer">Developer</option>
                 <option value="Employee">Employee</option>
+                <option value="SuperUser">SuperUser</option>
                 </select></td>
-                <td><select onChange={(e)=>{item.status=e.target.value}}>
+                <td className="text-center"><select onChange={(e)=>{item.status=e.target.value}}>
                   <option value="default">{item.status}</option>
                   <option value="Requested">Requested</option>
                   <option value="Active" >Active</option>
@@ -312,153 +318,32 @@ const sortByStatus = () => {
                   {console.log(item.role)}
                   {/* {console.log(this.role.current.value)}
                   {console.log(this.status.current.value)} */}
-                <td><button  className="btn btn-success" onClick={()=>updaterequested(item.username,item.role,item.status)}>Accept</button></td>
-                <td><button  className="btn btn-danger" onClick={()=>showDeleteModal(item.username)}>Deny</button></td>
+                <td className="text-center"><button  className="btn btn-success" onClick={()=>updaterequested(item.username,item.role,item.status)}>Accept</button></td>
+                <td className="text-center"><button  className="btn btn-danger" onClick={()=>showDeleteModal(item.username)}>Deny</button></td>
               </tr>
               ))}
             </tbody>
           </table>
-          </Card.Body>
-          </Card>
-          </Row>
+          
           <DeleteConfirmation showModal={displayConfirmationModal} confirmModal = {submitDelete} hideModal = {hideConfirmationModal} username={username} message={deleteMessage} />
         </div>
-        <div className="card text-center">
-          <div className="card-body">
+        <br/>
+        <div className="text-center">
+          <div>
             <a href="/requestaccess" className="btn btn-primary">Add</a>
           </div>
         </div>
       </div>
-      <footer className="text-center text-lg-start bg-dark text-white">
-        <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-          <div className="me-5 d-none d-lg-block">
-            <h3>incedo</h3>
-          </div>
-          <div>
-
-            <section className="mb-4">
-
-              <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-              ><i className="fab fa-facebook-f"></i
-              ></a>
-
-
-              <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-              ><i className="fab fa-twitter"></i
-              ></a>
-
-
-              <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-              ><i className="fab fa-google"></i
-              ></a>
-
-
-              <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-              ><i className="fab fa-instagram"></i
-              ></a>
-
-
-              <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-              ><i className="fab fa-linkedin-in"></i
-              ></a>
-
-
-              <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-              ><i className="fab fa-github"></i
-              ></a>
-            </section>
-
-          </div>
-        </section>
-        <section className="">
-          <div className="container text-center text-md-start mt-5">
-            <div className="row mt-3">
-              <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                <h6 className="fw-bold mb-4">
-                  Company
-                </h6>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Company Overview</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Incedo Belief System</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Leadership</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Winning In The Digital Age</a>
-                </p>
-              </div>
-              <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                <h6 className="fw-bold mb-4">
-                  Services
-                </h6>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">AI and Data</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Cloud Transformation</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Digital Engineering</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Experience Design</a>
-                </p>
-              </div>
-              <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                <h6 className="text-uppercase fw-bold mb-4">
-                  Industries
-                </h6>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Financial Services</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Life Sciences</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Product Engineering</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Telecom</a>
-                </p>
-              </div>
-              <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                <h6 className="text-uppercase fw-bold mb-4">
-                  Platforms
-                </h6>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Incedo Lighthouse<sup>TM</sup></a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">IncedoPay</a>
-                </p>
-              </div>
-              <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                <h6 className="text-uppercase fw-bold mb-4">
-                  Insights
-                </h6>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Case Studies</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">White Papers</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Blogs</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset text-decoration-none">Videos</a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-        <div className="text-center p-4">
+      <br />
+      <br />
+      <br />
+      {/* <!----- Footer start -----> */}
+      <footer class="text-center text-lg-start bg-dark text-white fixed-bottom">
+        <div class="text-center p-2">
           &copy; Copyright 2022 Incedo Inc.
         </div>
       </footer>
+            {/* <!----- Footer end -----> */}
     </div>
     )};
 export default AdminDashboard;

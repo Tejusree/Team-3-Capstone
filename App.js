@@ -6,7 +6,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import DeveloperDashboard from './pages/DeveloperDashboard';
 import EmployeeDashboard from './pages/EmployeeDashboard';
 import AllowanceDashboard from './pages/AllowanceDashboard';
-import SuperUserDashboard from './pages/SuperUserDashboard';
+import SuperUserDashboard from './pages/SuperDashBoard';
 import Homepage from './pages/Homepage';
 import Login from './pages/Login';
 //import Unauthorized from './pages/Unauthorized';
@@ -17,6 +17,8 @@ import RequestAccess from './pages/RequestAccess';
 import { Outlet } from 'react-router-dom';
 import AuthComp from './pages/Authcomp';
 import ProfileEdit from './pages/ProfileEdit';
+import ProfileEdit2 from './pages/ProfileEdit2';
+import FileUpload from './pages/FileUpload';
 import './pages/Unauthorized.scss';
 
 function App () {
@@ -24,11 +26,12 @@ function App () {
   const [isAdmin, setisAdmin] = useState(false);
   const [isLead, setisLead] = useState(false);
   const [isDeveloper, setisDeveloper] = useState(false);
-  const [isEmployee, setisEmployee] = useState(false);
+  //const [isEmployee, setisEmployee] = useState(false);
+  const [isSuperUser, setisSuperUser] = useState(false);
 
   return (
     <>
-    <AuthComp.Provider value={{isAdmin, setisAdmin, isLead, setisLead, isDeveloper, setisDeveloper, isEmployee, setisEmployee  }}>
+    <AuthComp.Provider value={{isAdmin, setisAdmin, isLead, setisLead, isDeveloper, setisDeveloper, isSuperUser, setisSuperUser }}>
       <Router>
         <Routes>
         <Route path='/' exact element = {<Homepage/>} />
@@ -39,6 +42,7 @@ function App () {
         <Route path='/profile/:username' exact element = {<Profile/>} />
         <Route path ='/logout' element = {<Homepage/>} />
         <Route path='/ProfileEdit/:Id' element={<ProfileEdit/>}></Route>
+        <Route path='/ProfileEdit2/:Id' element={<ProfileEdit2/>}></Route>
 
         <Route element={<PrivateRoutes1 />}> 
         <Route path='/admin' element = {<AdminDashboard/>} />
@@ -52,13 +56,17 @@ function App () {
         <Route path='/developer' element = {<DeveloperDashboard/>} />
         </Route>
         
-        <Route element={<PrivateRoutes4 />}>
+        
         <Route path='/employee' element = {<EmployeeDashboard/>} />
+    
+
+        <Route element={<PrivateRoutes5 />}>
+        <Route path='/superuser' element = {<SuperUserDashboard/>} />
         </Route>
 
-        <Route path='/superuser' element = {<SuperUserDashboard/>} />
-
         <Route path='/unauthorized' element = {<Unauthorized/>} />
+
+        <Route path='/fileupload' element = {<FileUpload/>} />
 
         </Routes>
         </Router>
@@ -116,18 +124,34 @@ const PrivateRoutes3 = () => {
 
 }
 
-const PrivateRoutes4 = () => {
+// const PrivateRoutes4 = () => {
+//   var pmn = JSON.parse(localStorage.getItem("userpojo"));
+//   var role = JSON.parse(localStorage.getItem("userpojorole"));
+//   if(role === "Employee")
+//   {
+//     var isEmployee = true;
+//   }
+//   var temp = React.useContext(AuthComp);
+//   console.log("employee " + temp.isEmployee);
+
+//   return(
+//     isEmployee ? <Outlet/> : <Navigate to='/unauthorized'/>
+//    )
+
+// }
+
+const PrivateRoutes5 = () => {
   var pmn = JSON.parse(localStorage.getItem("userpojo"));
   var role = JSON.parse(localStorage.getItem("userpojorole"));
-  if(role === "Employee")
+  if(role === "SuperUser")
   {
-    var isEmployee = true;
+    var isSuperUser = true;
   }
   var temp = React.useContext(AuthComp);
-  console.log("employee " + temp.isEmployee);
+  console.log("superuser " + temp.isSuperUser);
 
   return(
-    isEmployee ? <Outlet/> : <Navigate to='/unauthorized'/>
+    isSuperUser ? <Outlet/> : <Navigate to='/unauthorized'/>
    )
 
 }

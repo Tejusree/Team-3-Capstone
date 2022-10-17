@@ -11,7 +11,7 @@
 .sub-App {
   display: flex;
   justify-content: center;
-  height: 390px;
+  min-height: 60vh;
   width: 450px;
   box-shadow:0 5px 10px rgba(0,0,0,0.1);
   padding-top: 20px;
@@ -22,7 +22,7 @@
 .reset-App {
   display: flex;
   justify-content: center;
-  height: 450px;
+  min-height: 70vh;
   width: 450px;
   box-shadow:0 5px 10px rgba(0,0,0,0.1);
   padding-bottom: 8px;
@@ -83,7 +83,7 @@
 
 .info{
   padding-bottom: 5px;
-  color:rebeccapurple;
+  color:rgb(10, 10, 10);
   font-size: 15px;
   
 }
@@ -160,5 +160,62 @@
   position:absolute;
 
   left:-9999px;
+
+}
+
+.aforpass{
+
+  color:#EF4923;
+
+  font-weight:bold;
+
+  text-decoration: none;
+
+
+}
+
+.text-forgotpass{
+
+  font-size: 25px;
+
+  color: #EF4923;
+
+  font-weight:bold;
+
+
+
+}
+
+.forgotspace{
+  margin-top: 10px;
+}
+
+.msgdisplay{
+
+  color: red;
+
+  border: 3px solid #003049;
+
+  font-weight: 500;
+
+  margin-top: 5px;
+
+  border-radius: 5px;
+
+}
+
+
+
+.msgdisplayg{
+
+  color:green;
+
+  border: 3px solid #003049;
+
+  font-weight: 500;
+
+  margin-top: 5px;
+
+  border-radius: 5px;
 
 }

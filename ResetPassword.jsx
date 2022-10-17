@@ -1,12 +1,11 @@
 import axios from 'axios';
 import React, { Component, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-
 import unlock from "../image/unlock.jpg";
 import { useNavigate } from 'react-router-dom';
 import bcrypt from 'bcryptjs';
-//import '../App.css'
-import './register.css';
+import '../App.css'
+//import './register.css';
 import bgimage from "../assests/A.jpg"
 import * as AiIcons from "react-icons/ai";
 import * as BiIcons from "react-icons/bi";
@@ -22,96 +21,95 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export default function ResetPassword() {
     
-    const [userOtp, setuserOtp] = useState("")
-    const [newPass, setnewPass] = useState("")
-    const [confirmPass, setconfirmPass] = useState("")
-    
-    const [passMatch, setpassMatch] = useState(false)
-    const [passUnmatch, setpassUnmatch] = useState()
-    const [otpUnmatch, setotpUnmatch] = useState(false)
-    const [validatepassword,setValidatepassword] = useState(' ')
-    const [passwordfocus,setPasswordfocus] = useState(' ')
+  const [userOtp, setuserOtp] = useState("")
+  const [newPass, setnewPass] = useState("")
+  const [confirmPass, setconfirmPass] = useState("")
+  
+  const [passMatch, setpassMatch] = useState(false)
+  const [passUnmatch, setpassUnmatch] = useState()
+  const [otpUnmatch, setotpUnmatch] = useState(false)
+  const [validatepassword,setValidatepassword] = useState(' ')
+  const [passwordfocus,setPasswordfocus] = useState(' ')
 
-    let navigate = useNavigate(); 
-    
-    let data = useLocation();
-    function checkOtp(event){
-        setuserOtp(event.target.value)
+  let navigate = useNavigate(); 
+  
+  let data = useLocation();
+  function checkOtp(event){
+      setuserOtp(event.target.value)
 
-        if(event.target.value.length <= 5 || event.target.value.length >=5){
-            if(event.target.value != data.state.otp){
-            setotpUnmatch(true);
-            }
-            else{
-                setotpUnmatch(false);
-            }
-        }
-        
-    }
-    //function to validate the password with regex
-    function validatePassword(event)
-    {
-       setnewPass(event.target.value);
-       const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-        const display2 = PWD_REGEX.test(event.target.value);
-        if(display2)
-        {
-            setValidatepassword(true);
-        }
-        else
-        {
-            setValidatepassword(false);
-        }
-
-    }
-    async function checkPass(e){
+      if(event.target.value.length <= 5 || event.target.value.length >=5){
+          if(event.target.value != data.state.otp){
+          setotpUnmatch(true);
+          }
+          else{
+              setotpUnmatch(false);
+          }
+      }
       
-        e.preventDefault();
-        if(newPass.length >0 && confirmPass.length >0 && !otpUnmatch){
-        if(newPass!=confirmPass)
-        {
-            setpassUnmatch(true); }
+  }
+  //function to validate the password with regex
+  function validatePassword(event)
+  {
+     setnewPass(event.target.value);
+     const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+      const display2 = PWD_REGEX.test(event.target.value);
+      if(display2)
+      {
+          setValidatepassword(true);
+      }
+      else
+      {
+          setValidatepassword(false);
+      }
 
-        else{
-
-           
-            const salt = await bcrypt.genSalt(6);
-            const hashedPass = await bcrypt.hash(newPass, salt);
-
-            
-            
-            
-            setpassMatch(true);
-            setpassUnmatch(false);
-
-            var formBodyData = new FormData();
-            formBodyData.append('email', data.state.email);
-            formBodyData.append('pass', hashedPass);
-
-           const res2=await axios({
-            method:"POST",
-            url:"http://localhost:8080/updatepassword",
-            data:formBodyData,
-            headers:{"Content-Type":"multipart/form-data"}
-        })
-        if(res2.data){
-            setTimeout(
-                () => {navigate("/login")}, 2500
-               )
-        }
-
-        }
-        
-
-    }
-    else{
-        window.alert("Invalid OTP")
-    }
-   
-}
+  }
+  async function checkPass(e){
     
+      e.preventDefault();
+      if(newPass.length >0 && confirmPass.length >0 && !otpUnmatch){
+      if(newPass!=confirmPass)
+      {
+          setpassUnmatch(true); }
+
+      else{
+
+         
+          const salt = await bcrypt.genSalt(6);
+          const hashedPass = await bcrypt.hash(newPass, salt);
+
+          
+          
+          
+          setpassMatch(true);
+          setpassUnmatch(false);
+
+          var formBodyData = new FormData();
+          formBodyData.append('email', data.state.email);
+          formBodyData.append('pass', hashedPass);
+
+         const res2=await axios({
+          method:"POST",
+          url:"http://localhost:8080/updatepassword",
+          data:formBodyData,
+          headers:{"Content-Type":"multipart/form-data"}
+      })
+      if(res2.data){
+          setTimeout(
+              () => {navigate("/login")}, 2500
+             )
+      }
+
+      }
+      
+
+  }
+  else{
+      window.alert("Invalid OTP")
+  }
+ 
+}
     return (
-        <div style={{ "position": "absolute", "top": "0", "bottom": "0", "left": "0", "right": "0", "overflow-y": "scroll" }}>
+      <div style={{ "position": "absolute", "top": "0", "bottom": "0", "left": "0", "right": "0", "overflow-y": "scroll" }}>
       {/* <!----- Nav bar start -----> */}
       <div>
         <nav class="navbar navbar-dark bg-dark fixed-top">
@@ -169,12 +167,12 @@ export default function ResetPassword() {
 
                     <div className="imgs">
                         <div className="container-image">
-                            <img src={unlock} className="unlock"></img> *
+                            <img src={unlock} className="unlock"></img> 
                         </div>
                         
                     </div>
                     <div>
-                        <h2 className="resetpass" >Reset Password</h2>
+                        <h2 className="text-forgotpass" >Reset Password</h2>
                     
                         
                         <form onSubmit = {checkPass}>
@@ -185,7 +183,7 @@ export default function ResetPassword() {
                             <input required value={userOtp}  onChange = {(event) => checkOtp(event)} type="text" placeholder="OTP"className="otp" style={{ "background": "#003049", "color": "#eee", "width": "300px", "height": "33px", "fontSize": "17px", "border-radius": "5px" }}/>
                             {
 
-                              otpUnmatch && <p>OTP is Incorrect.</p>  
+                              otpUnmatch && <p className='msgdisplay'>OTP is Incorrect.</p>  
 
                             }
                         </div>
@@ -196,7 +194,7 @@ export default function ResetPassword() {
                             {
                                 otpUnmatch? <input readOnly required onChange = {(event) => setnewPass(event.target.value)} type =  "password" placeholder="  Password" className="password-field"/> : <input  required onChange = {(event) => validatePassword(event)} type =  "password" placeholder="  Password" style={{ "background": "#003049", "color": "#eee", "width": "300px", "height": "33px", "fontSize": "17px", "border-radius": "5px" }}className="password-field" onFocus={(e)=>setPasswordfocus(true)} onBlur={(e)=>setPasswordfocus(false)}/>
                             }
-                             <p id = "pwdnote" className={ !validatepassword && passwordfocus ? "instructions":"offscreen"} style={{"font-weight":"Bold", "font-size" : "15px"}}>
+                             <p id = "pwdnote" className={ !validatepassword && passwordfocus ? "instructions":"offscreen"}>
                              <span className="validation">   <FontAwesomeIcon icon={faInfoCircle}/>8 to 24 characters.<br/>
                                                                        Must include uppercase and lowercase letters , a number and a special character.
                                                                       Allowed special characters:<span aria-label="exclamation mark">!</span>
@@ -206,12 +204,6 @@ export default function ResetPassword() {
                                                            <span aria-label="percent">%</span></span> 
                                 </p> 
                            {console.log(newPass)}
-                                               
-                                    
-                                
-                               
-                           
-                        
                         </div>
                         <br/>
                         <div>
@@ -223,13 +215,14 @@ export default function ResetPassword() {
                             }
                         </div>
                         <br/>
-                        <button type='submit' className="Reset" style={{ "background": "#fbd0d9", "color": "crimson" }}>Submit</button> 
+                        <button type='submit' className="btn btn-success reset">Submit</button> 
+                        {/* style={{ "background": "#fbd0d9", "color": "crimson" }} */}
                         </form>
                         {
-                           passUnmatch && <p>Those passwords didn't match. Try Again! </p>
+                           passUnmatch && <p className="msgdisplay">Those passwords didn't match. Try Again! </p>
                         }
                         {
-                           passMatch && <p>Success! You've reset your password.</p>
+                           passMatch && <p className='msgdisplayg'>Success! You've reset your password.</p>
   
                         }
                         <div>
@@ -241,12 +234,13 @@ export default function ResetPassword() {
            </div>
 
        </div>
-       <footer class="text-center text-lg-start bg-dark text-white">
+       {/* <!----- Footer start -----> */}
+      <footer class="text-center text-lg-start bg-dark text-white fixed-bottom">
         <div class="text-center p-2">
           &copy; Copyright 2022 Incedo Inc.
         </div>
       </footer>
+            {/* <!----- Footer end -----> */}
        </div>
     )
-}                           
-        
+}        

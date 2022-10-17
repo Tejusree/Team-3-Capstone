@@ -128,7 +128,7 @@ export default function ForgotPassword() {
               mailSuccess && window.alert("Mail has been sent successfully!")
             }
             {
-              !mailexist && <h1>Mail-id doesn't Exist</h1>
+              !mailexist && <h3 style={{"color":"crimson"}}>Mail-id doesn't exist</h3>
             }
             <div className="imgs">
               <div className="container-image">
@@ -145,12 +145,13 @@ export default function ForgotPassword() {
               </h1>
               <br />
               <div>
-                <button onClick={handleSubmit} style={{ "background": "#fbd0d9", "color": "crimson" }}>Submit</button>
+              <button onClick= {handleSubmit} className="btn btn-success fogpass">Submit</button>
               </div>
-              <br />
+              
               <div>
-                <p>
-                  <a href="/login" style={{ color: "#0d6efd" }}>Back to login</a>
+                <p className='forgotspace'>
+                
+                <a href="/login" className="aforpass">Back to login?</a>
                 </p>
               </div>
             </div>

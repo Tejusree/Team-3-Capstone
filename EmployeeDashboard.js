@@ -1,12 +1,13 @@
 import React, { useEffect,useState } from "react";
 import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav,Card,Row } from 'react-bootstrap'
-//import './All.css'
+import './All.css'
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import * as BiIcons from "react-icons/bi";
 import * as ImIcons from "react-icons/im";
 import * as MdIcons from "react-icons/md";
+import * as RiIcons from "react-icons/ri";
 import {CSVLink} from 'react-csv';
 
 const EmployeeDashboard =()=> {
@@ -17,27 +18,29 @@ const EmployeeDashboard =()=> {
         const [startdate,setStartdate] = useState(' ');
         const [enddate,setEnddate] = useState(' ');
 
-        //fetching Employee complete data
-        useEffect(() => {
-        const username = JSON.parse(localStorage.getItem("userpojo"));
-        console.log(username);
-        const changeusername = username.replaceAll(" ","_");
-        fetch(`http://localhost:8080/getAllowanceDashBoardByUserName/${changeusername}`)
-        .then (response => response.json())
-        .then(data => {console.log (data)
-            setUdata(data)});
-          },[])
+        // //fetching Employee complete data
 
-        //fetching data based on ProjectName, Startdate and Enddate
-        useEffect(()=>{
+         useEffect(() => {
+         const username = JSON.parse(localStorage.getItem("userpojo"));
+         console.log(username);
+         const changeusername = username.replaceAll(" ","_");
+         fetch(`http://localhost:8080/getAllowanceDashBoardByUserName/${changeusername}`)
+         .then (response => response.json())
+         .then(data => {console.log (data)
+             setUdata(data)});
+           },[])
+
+        // //fetching data based on ProjectName, Startdate and Enddate
+
+         useEffect(()=>{
             const username = JSON.parse(localStorage.getItem("userpojo"));
             const changeusername = username.replaceAll(" ","_");
-            if(projectname !== ' ' && startdate !== ' ' && enddate !== ' ')
+             if(projectname !== ' ' && startdate !== ' ' && enddate !== ' ')
             {
                 var url = `http://localhost:8080/getEmployeeAllowanceDashBoard/${projectname}/${startdate}/${enddate}/${changeusername}`;
                 fetch(url).then(response=>response.json()).then(data=>{console.log(data) 
-                                                                       setUdata(data)});
-            }
+                                                                        setUdata(data)});
+             }
         },[enddate])
 
         //localstorage projectmanagername lead(name)
@@ -68,7 +71,7 @@ const EmployeeDashboard =()=> {
          };
   
         
-        return <div style={{ "position": "absolute", "top": "0", "bottom": "0", "left": "0", "right": "0", "overflow-y": "scroll" }}>
+        return <div style={{ "position": "absolute", "top": "0", "bottom": "0", "left": "0", "right": "0", "overflow-y": "scroll"}}>
             {/* <!----- Nav bar start -----> */}
             <div>
                 <nav class="navbar navbar-dark bg-dark fixed-top">
@@ -91,7 +94,7 @@ const EmployeeDashboard =()=> {
                                     </li>
                                     <li class="nav-item">
                                         <LinkContainer to="/admin">
-                                            <Nav.Link><ImIcons.ImUserTie />&ensp;Admin Dashboard</Nav.Link>
+                                            <Nav.Link><RiIcons.RiAdminFill />&ensp;Admin Dashboard</Nav.Link>
                                         </LinkContainer>
                                     </li>
                                     <li class="nav-item">
@@ -110,8 +113,13 @@ const EmployeeDashboard =()=> {
                                         </LinkContainer>
                                     </li>
                                     <li class="nav-item">
-                                        <LinkContainer to="/login">
-                                            <Nav.Link><FaIcons.FaUserAlt />&ensp;Logout</Nav.Link>
+                                        <LinkContainer to="/superuser">
+                                            <Nav.Link><ImIcons.ImUserTie />&ensp;Super User Dashboard</Nav.Link>
+                                        </LinkContainer>
+                                    </li>
+                                    <li class="nav-item">
+                                        <LinkContainer to="/logout">
+                                            <Nav.Link><BiIcons.BiLogOutCircle />&ensp;Logout</Nav.Link>
                                         </LinkContainer>
                                     </li>
                                 </ul>
@@ -130,23 +138,23 @@ const EmployeeDashboard =()=> {
                 <h1>Employee Dashboard</h1>
             </div>
             <br />
-            <div class="d-flex justify-content-evenly">
-                <div class="col" style={{ "padding-left": "80px" }}>
-                    <select class="form-select" aria-label="Default select example" style={{ "height": "40px", "width": "300px", fontWeight: "bold" }} onChange={(e)=>setProjectname(e.target.value)}>
-                        <option selected style={{ fontWeight: "bold" }}>Project</option>
-                        <option value="Digital" style={{ fontWeight: "bold" }}>Digital</option>
-                        <option value="Enterprise Platforms" style={{ fontWeight: "bold" }}>Enterprise Platforms</option>
-                        <option value="CET" style={{ fontWeight: "bold" }}>CET</option>
-                        <option value="Data" style={{ fontWeight: "bold" }}>Data</option>
+            <div id="main" class="d-flex justify-content-evenly">
+                <div class="col project">
+                    <select aria-label="Default select example" style={{ "height": "36px" }} onChange={(e)=>setProjectname(e.target.value)}>
+                        <option selected>Project</option>
+                        <option value="Digital">Digital</option>
+                        <option value="Enterprise Platforms">Enterprise Platforms</option>
+                        <option value="CET">CET</option>
+                        <option value="Data">Data</option>
                     </select>
                 </div>
                 <div class="col">
-                    <label style={{"padding-left":"70px"}}>Search From</label>&emsp;
-                    <input type="date" style={{ "height": "40px", fontWeight: "bold" }} onChange={(e)=>setStartdate(e.target.value)}/>
+                    <label>From</label>&emsp;
+                    <input type='date' onChange={(e)=>setStartdate(e.target.value)} style={{"height":"36px"}}/>
                 </div>
                 <div class="col">
-                    <label style={{"padding-left":"70px"}}>Search To</label>&emsp;
-                    <input type="date" style={{ "height": "40px", fontWeight: "bold" }} onChange={(e)=>setEnddate(e.target.value)}/>
+                    <label>To</label>&emsp;
+                    <input type="date" onChange={(e)=>setEnddate(e.target.value)} style={{"height":"36px"}}/>
                 </div>
             </div>
             <br />
@@ -160,46 +168,41 @@ const EmployeeDashboard =()=> {
             <br /><br />
             <div>
             <div className="container">
-                <Row>
-                <Card className="mt-2">
-                <Card.Body>
-                <table class="table" border="1">
-                    <thead>
+                <table class="table table-striped" border="1">
+                    <thead class="table-success">
                         <tr>
                     
-                            <th>Name</th>
-                            <th>SAP ID</th>
-                            <th>Project hours</th>
-                            <th>Holiday /leave hours</th>
-                            <th>Afternoon Shift Days</th>
-                            <th>Night Shift Days</th>
-                            <th>Days eligible for TA</th>
-                            <th>Approval Status</th>
-                            <th>Transport Allowance</th>
-                            <th>Total Allowance</th>
+                            <th className="text-center">Name</th>
+                            <th className="text-center">SAP ID</th>
+                            <th className="text-center">Project hours</th>
+                            <th className="text-center">Holiday /leave hours</th>
+                            <th className="text-center">Afternoon Shift Days</th>
+                            <th className="text-center">Night Shift Days</th>
+                            <th className="text-center">Days eligible for TA</th>
+                            <th className="text-center">Approval Status</th>
+                            <th className="text-center">Transport Allowance</th>
+                            <th className="text-center">Total Allowance</th>
                         </tr>
                     </thead>
                     <tbody>
                     {Udata.map(c => <tr>
                             <React.Fragment key = {c.id}>
-                            <td>{c.name}</td>
-                            <td>{c.sapid}</td>
-                            <td>{c.projecthours}</td>
-                            <td>{c.holidayleavehours}</td>
-                            <td>{c.afternoonshiftdays}</td>
-                            <td>{c.nightshiftdays}</td>
-                            <td>{c.dayseligibleforta}</td>
-                            <td>{c.status}</td>
-                            <td>{c.transportallowance}</td>
-                            <td>{c.totalallowance}</td>
+                            <td className="text-center">{c.name}</td>
+                            <td className="text-center">{c.sapid}</td>
+                            <td className="text-center">{c.projecthours}</td>
+                            <td className="text-center">{c.holidayleavehours}</td>
+                            <td className="text-center">{c.afternoonshiftdays}</td>
+                            <td className="text-center">{c.nightshiftdays}</td>
+                            <td className="text-center">{c.dayseligibleforta}</td>
+                            <td className="text-center">{c.status}</td>
+                            <td className="text-center">{c.transportallowance}</td>
+                            <td className="text-center">{c.totalallowance}</td>
                             </React.Fragment>
                             
                         </tr>)}
                     </tbody>
                 </table>
-                </Card.Body>
-                </Card>
-                </Row>
+                
                 </div>
                 <br /><br />
                 <div class="d-flex justify-content-between" style={{ "padding-left": "1.5cm", fontWeight: "bold" }}>
@@ -210,139 +213,14 @@ const EmployeeDashboard =()=> {
                 </div>
             </div>
             <br />
-
+            <br/>
+            <br/>
             {/* <!----- Footer start -----> */}
-            <footer class="text-center text-lg-start bg-dark text-white">
-                <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-                    <div class="me-5 d-none d-lg-block">
-                        <h3>incedo</h3>
-                    </div>
-                    <div>
-
-                        <section class="mb-4">
-
-                            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                            ><i class="fab fa-facebook-f"></i
-                            ></a>
-
-
-                            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                            ><i class="fab fa-twitter"></i
-                            ></a>
-
-
-                            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                            ><i class="fab fa-google"></i
-                            ></a>
-
-
-                            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                            ><i class="fab fa-instagram"></i
-                            ></a>
-
-
-                            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                            ><i class="fab fa-linkedin-in"></i
-                            ></a>
-
-
-                            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                            ><i class="fab fa-github"></i
-                            ></a>
-                        </section>
-
-                    </div>
-                </section>
-
-                <section class="">
-                    <div class="container text-center text-md-start mt-5">
-                        <div class="row mt-3">
-                            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                                <h6 class="fw-bold mb-4">
-                                    Company
-                                </h6>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Company Overview</a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Incedo Belief System</a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Leadership</a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Winning In The Digital Age</a>
-                                </p>
-                            </div>
-                            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                                <h6 class="fw-bold mb-4">
-                                    Services
-                                </h6>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">AI and Data</a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Cloud Transformation</a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Digital Engineering</a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Experience Design</a>
-                                </p>
-                            </div>
-                            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                                <h6 class="text-uppercase fw-bold mb-4">
-                                    Industries
-                                </h6>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Financial Services</a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Life Sciences</a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Product Engineering</a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Telecom</a>
-                                </p>
-                            </div>
-                            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                                <h6 class="text-uppercase fw-bold mb-4">
-                                    Platforms
-                                </h6>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Incedo Lighthouse<sup>TM</sup></a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">IncedoPay</a>
-                                </p>
-                            </div>
-                            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                                <h6 class="text-uppercase fw-bold mb-4">
-                                    Insights
-                                </h6>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Case Studies</a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">White Papers</a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Blogs</a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset text-decoration-none">Videos</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <div class="text-center p-4">
-                    &copy; Copyright 2022 Incedo Inc.
-                </div>
-            </footer>
+      <footer class="text-center text-lg-start bg-dark text-white fixed-bottom">
+        <div class="text-center p-2">
+          &copy; Copyright 2022 Incedo Inc.
+        </div>
+      </footer>
             {/* <!----- Footer end -----> */}
         </div>
     
@@ -351,7 +229,6 @@ const EmployeeDashboard =()=> {
 export default EmployeeDashboard;
 
 {/* // import React from 'react';
-
 // function Employee ()  {
 //   return (
 //     <div className='employee'>
@@ -359,5 +236,4 @@ export default EmployeeDashboard;
 //         </div>
 //   );
 // }
-
 // export default Employee; */}
