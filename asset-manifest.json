@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/Team-3-Capstone/static/css/main.d6791f71.css",
+    "main.js": "/Team-3-Capstone/static/js/main.7d69d702.js",
+    "static/js/787.5c467991.chunk.js": "/Team-3-Capstone/static/js/787.5c467991.chunk.js",
+    "static/media/mail.jpg": "/Team-3-Capstone/static/media/mail.93add76acd6695523bd6.jpg",
+    "static/media/A.jpg": "/Team-3-Capstone/static/media/A.6eeca44bd9f850b140be.jpg",
+    "static/media/B.jpg": "/Team-3-Capstone/static/media/B.abb491869bd91c813c7e.jpg",
+    "static/media/Incedologo.jpg": "/Team-3-Capstone/static/media/Incedologo.48ceb5aa7a2c8b72d554.jpg",
+    "static/media/hello.jpg": "/Team-3-Capstone/static/media/hello.63b30be5c1731936a86a.jpg",
+    "static/media/lock.png": "/Team-3-Capstone/static/media/lock.15da50d2bb256cbd714a.png",
+    "index.html": "/Team-3-Capstone/index.html",
+    "main.d6791f71.css.map": "/Team-3-Capstone/static/css/main.d6791f71.css.map",
+    "main.7d69d702.js.map": "/Team-3-Capstone/static/js/main.7d69d702.js.map",
+    "787.5c467991.chunk.js.map": "/Team-3-Capstone/static/js/787.5c467991.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d6791f71.css",
+    "static/js/main.7d69d702.js"
+  ]
+}
