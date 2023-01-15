@@ -1,0 +1,9 @@
+
+.centerText{
+    text-align: center;
+  }
+  .verticalCenter{
+      flex: 1;
+      justify-content: center;
+      line-height: 100px; 
+    }
